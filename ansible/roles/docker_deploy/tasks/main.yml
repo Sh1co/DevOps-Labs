@@ -1,0 +1,18 @@
+---
+- name: Pull and deploy image
+    tags: deployment
+    block:
+      - name: pull image
+        docker_image:
+          name: sh1co/devopslab
+
+      - name: Create container
+        docker_container:
+          name: mydevopslab
+          image: sh1co/devopslab
+- name: Template docker-compose to /app_python
+  ansible.builtin.template:
+    src: /templates/docker-compose.yml
+    dest: /app_python
+    owner: root
+    group: root
